@@ -4,8 +4,8 @@ Install
 -------
 ```bash
   # WGET
-  $ wget https://github.com/Status-Stack/sdk-linux/archive/refs/tags/v0.0.1-BETA.zip
-  $ unzip v0.0.1-BETA.zip
+  $ wget https://github.com/Status-Stack/sdk-linux/archive/refs/tags/v1.0.0.zip
+  $ unzip v1.0.0.zip
 ```
 
 Usage
