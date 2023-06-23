@@ -13,10 +13,10 @@ Usage
 
 Load average monitor
 ```bash
-  # Example CRON task "1 * * * * /path/to/monitor-load.sh > /dev/null"
-  # (script must by executable: "sudo chmod +x monitor-load.sh")
+  # Example CRON task "1 * * * * /path/to/monitor.sh > /dev/null"
+  # (script must by executable: "sudo chmod +x monitor.sh")
   
-  $ sh monitor-load.sh
+  $ sh monitor.sh
 ```
 
 Copyright (c) 2022-2023 Status Stack
