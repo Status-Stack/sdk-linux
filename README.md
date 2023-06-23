@@ -16,7 +16,7 @@ Load average monitor
   # Example CRON task "1 * * * * /path/to/monitor-load.sh > /dev/null"
   # (script must by executable: "sudo chmod +x monitor-load.sh")
   
-  $ sh monitor-load.sh <HOST> <SECRET_KEY>
+  $ sh monitor-load.sh
 ```
 
-Copyright (c) 2022 Status Stack
+Copyright (c) 2022-2023 Status Stack
