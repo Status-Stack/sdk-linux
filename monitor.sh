@@ -48,7 +48,7 @@ send_usage_space() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     value=$(df | awk -v filter="${3//\//\/}" '$0~filter{gsub("%", ""); print $5}')
   else
-    value=$(df ${3} | awk '{gsub("%", ""); print $5}')
+    value=$(df -h --output=pcent ${3} | tail -n +2 | awk '{gsub("%", ""); print $1}')
   fi
 
   echo ""
