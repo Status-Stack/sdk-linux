@@ -13,7 +13,7 @@ send_request() {
 
 send_load_average() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    value=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{print $1}')
+    value=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{gsub(",", "."); print $1}')
   else
     value=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
   fi
