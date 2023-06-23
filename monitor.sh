@@ -11,10 +11,14 @@ send_request() {
      --data "{\"tag\":\"${3}\",\"data\":\"${4}\",\"priority\":0}"
 }
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  value=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{print $1}')
-else
-  value=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
-fi
+send_load_average() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    value=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{print $1}')
+  else
+    value=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
+  fi
 
-send_request "${API_ENDPOINT}" "${API_KEY}" "load-averages" "${value}"
+  send_request "${1}" "${2}" "load-averages" "${value}"
+}
+
+send_load_average "${API_ENDPOINT}" "${API_KEY}"
