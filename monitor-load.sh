@@ -2,15 +2,19 @@
 
 . ./local.config
 
+send_request() {
+  /usr/bin/curl --request POST \
+     --url "${1}" \
+     --header "X-StatusStack-Auth: ${2}" \
+     --header 'Content-type: application/json; charset=UTF-8' \
+     --header 'User-Agent: Status Stack - Linux SDK' \
+     --data "{\"tag\":\"${3}\",\"data\":\"${4}\",\"priority\":0}"
+}
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  lav=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{print $1}')
+  value=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{print $1}')
 else
-  lav=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
+  value=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
 fi
 
-/usr/bin/curl --request POST \
-     --url "${API_ENDPOINT}"\
-     --header "X-StatusStack-Auth: ${API_KEY}"\
-     --header 'Content-type: application/json; charset=UTF-8'\
-     --header 'User-Agent: Status Stack - Linux SDK'\
-     --data "{\"tag\":\"load-averages\",\"data\":${lav},\"priority\":0}"
+send_request "${API_ENDPOINT}" "${API_KEY}" "load-averages" "${value}"
