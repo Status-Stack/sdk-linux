@@ -2,7 +2,11 @@
 
 . ./local.config
 
-lav=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  lav=$(uptime | awk -F "load averages: " '{print $2}' | awk -F " " '{print $1}')
+else
+  lav=$(uptime | awk -F "load average: " '{print $2}' | awk -F "," '{print $1}')
+fi
 
 /usr/bin/curl --request POST \
      --url "${API_ENDPOINT}"\
