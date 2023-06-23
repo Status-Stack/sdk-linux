@@ -10,13 +10,15 @@ Install
 
 Usage
 -----
-
-Load average monitor
 ```bash
   # Example CRON task "1 * * * * /path/to/monitor.sh > /dev/null"
   # (script must by executable: "sudo chmod +x monitor.sh")
   
-  $ sh monitor.sh
+  $ sh ./monitor.sh [-l]
 ```
+
+**Options**
+
+`-l` send load average data
 
 Copyright (c) 2022-2023 Status Stack
